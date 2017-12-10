@@ -1,0 +1,38 @@
+---
+
+- name: "Create {{ BACKUP_DIRECTORY }} directory"
+  file:
+    path: "{{ BACKUP_DIRECTORY }}"
+    state: directory
+    mode: "0755"
+
+- name: "Exporting db"
+  shell:  wp db export {{ BACKUP_DIRECTORY }}/backup_db-{{ ansible_date_time.date }}.sql >> {{ LOGFILE }}
+  args:
+    chdir: "{{ WORDPRESS_HOME }}"
+
+- name: "Backing up files"
+  archive:
+    path: "{{ WORDPRESS_HOME }}"
+    dest: "{{ BACKUP_DIRECTORY }}/backup_files-{{ ansible_date_time.date }}.tar.bz2"
+    format: bz2
+
+- name: "Updating wordpress"
+  shell:  wp core update >> {{ LOGFILE }}
+  args:
+    chdir: "{{ WORDPRESS_HOME }}"
+
+- name: "Updating db"
+  shell:  wp core update-db >> {{ LOGFILE }}
+  args:
+    chdir: "{{ WORDPRESS_HOME }}"
+
+- name: "Updating plugins"
+  shell:  wp plugin update --all >> {{ LOGFILE }}
+  args:
+    chdir: "{{ WORDPRESS_HOME }}"
+
+- name: "Updating plugins"
+  shell:  wp core language update >> {{ LOGFILE }}
+  args:
+    chdir: "{{ WORDPRESS_HOME }}"

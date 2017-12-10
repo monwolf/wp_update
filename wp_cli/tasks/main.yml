@@ -1,0 +1,23 @@
+---
+
+- name: "Create {{ WP_INSTALL_DIR }} directory"
+  file:
+    path: "{{ WP_INSTALL_DIR }}"
+    state: directory
+    mode: "0755"
+
+- name: "Install wp-cli in {{ WP_INSTALL_DIR }}"
+  get_url:
+    url: https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+    dest: "{{ WP_INSTALL_DIR }}/wp"
+    mode: "0755"
+
+- name: Adding wp to PATH
+  blockinfile:
+    dest:  "{{ PROFILE_PATH }}"
+    marker: "## {mark} Added by ansible WP_CLI"
+    block: |
+      PATH={{ WP_INSTALL_DIR }}:$PATH
+      export PATH
+    backup: yes
+    create: yes

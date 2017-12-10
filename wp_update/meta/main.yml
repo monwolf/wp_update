@@ -1,0 +1,9 @@
+galaxy_info:
+  author: berni69
+  description: This package allows you to install and upgrade your wordpress instance
+  company: bitsdelocos
+  license:  GPLv2
+  min_ansible_version: 2.4
+  galaxy_tags:
+    - wordpress-update
+    - wp-update

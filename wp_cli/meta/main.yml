@@ -1,0 +1,10 @@
+galaxy_info:
+  author: berni69
+  description: This package allows you to install and upgrade wp-client
+  company: bitsdelocos
+  license:  GPLv2
+  min_ansible_version: 2.4
+  galaxy_tags:
+    - wp-cli
+    - wp
+    - wp-client

@@ -1,0 +1,12 @@
+---
+# defaults file for wp_update
+
+# In this directory, the script will store the backups before update the
+# wordpress
+BACKUP_DIRECTORY: "{{ ansible_env.HOME }}/backup/"
+
+# The root path of wordpress instance.
+WORDPRESS_HOME: "{{ ansible_env.HOME }}/public_html/"
+
+# Log file
+LOGFILE: "{{ BACKUP_DIRECTORY }}/wp-log-{{ ansible_date_time.date }}.log"

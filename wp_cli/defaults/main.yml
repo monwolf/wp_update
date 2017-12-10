@@ -1,0 +1,6 @@
+---
+# defaults file for wp_cli
+WP_INSTALL_DIR: "{{ ansible_env.HOME }}/bin/"
+
+# This file could be $HOME/.profile, .bashrc, .bash_profile
+PROFILE_PATH: "{{ ansible_env.HOME }}/.profile"
