@@ -2,5 +2,5 @@
 - name: configure and deploy the webservers and application code
   hosts: webservers
   roles:
-    - wp_cli
+    #- wp_cli
     - wp_update

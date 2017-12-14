@@ -16,6 +16,9 @@ In this role there are few customizable variables:
 
 - PROFILE_PATH: File where is setup the user profile. by default uses ~/.profile
 
+- FORCE_INSTALL: (boolean) When it set to true it will install de latest version in the user home.
+
+
 Example Playbook
 ----------------
 
@@ -24,7 +27,7 @@ Including an example of how to use your role (for instance, with variables passe
 Inventory file:
 
 [webservers]
-myexample.com ansible_host=1.1.1.1 PROFILE_PATH=/etc/bashrc
+myexample.com ansible_host=1.1.1.1 PROFILE_PATH=/etc/bashrc FORCE_INSTALL=true
 
 Playbook:
 

@@ -10,3 +10,20 @@ WORDPRESS_HOME: "{{ ansible_env.HOME }}/public_html/"
 
 # Log file
 LOGFILE: "{{ BACKUP_DIRECTORY }}/wp-log-{{ ansible_date_time.date }}.log"
+
+# When is set to false, ansible won't upgrade the plugins
+UPDATE_PLUGINS: true
+
+# When is set to false, ansible won't upgrade the language files
+UPDATE_LANGUAGE: true
+
+# When is set to false, ansible won't upgrade the templates (default false)
+UPDATE_TEMPLATES: false
+
+#Skip loading conflictive plugins with wp-cli. Ex: wordfence,akismet
+SKIP_PLUGINS: ""
+
+EXCLUDED_TABLES: "wp_wf*"
+
+#PHP max execution time
+max_execution_time: 600

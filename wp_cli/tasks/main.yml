@@ -1,16 +1,23 @@
 ---
+- name: Check is wp installed
+  shell: which wp >/dev/null 2>&1
+  register: wp_cli_exists
+  ignore_errors: yes
 
 - name: "Create {{ WP_INSTALL_DIR }} directory"
   file:
     path: "{{ WP_INSTALL_DIR }}"
     state: directory
     mode: "0755"
+  when: wp_cli_exists|failed or FORCE_INSTALL == true
+
 
 - name: "Install wp-cli in {{ WP_INSTALL_DIR }}"
   get_url:
     url: https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
     dest: "{{ WP_INSTALL_DIR }}/wp"
     mode: "0755"
+  when: wp_cli_exists|failed or FORCE_INSTALL == true
 
 - name: Adding wp to PATH
   blockinfile:
@@ -21,3 +28,4 @@
       export PATH
     backup: yes
     create: yes
+  when: wp_cli_exists|failed or FORCE_INSTALL == true

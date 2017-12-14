@@ -4,3 +4,6 @@ WP_INSTALL_DIR: "{{ ansible_env.HOME }}/bin/"
 
 # This file could be $HOME/.profile, .bashrc, .bash_profile
 PROFILE_PATH: "{{ ansible_env.HOME }}/.profile"
+
+# Enable the script to install it's own version of wp-cli
+FORCE_INSTALL: false

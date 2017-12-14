@@ -1,2 +1,6 @@
 ---
 # vars file for wp_update
+
+skipped_plugins: ""
+
+exclude_tables: ""
